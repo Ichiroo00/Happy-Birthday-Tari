@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Selamat Ulang Tahun ke-29, Tari!</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(125deg, #ff5d8f, #ff87ab, #ffc75f, #c77dff, #7209b7);
+      background-size: 320% 320%;
+      animation: gradientShift 9s ease infinite;
+      font-family: "Plus Jakarta Sans", "Segoe UI", sans-serif;
+      padding: 24px 16px;
+      overflow-x: hidden;
+      position: relative;
+      transition: background 0.8s ease;
+    }
+
+    body.party-mode {
+      background: radial-gradient(circle at top, #3c096c 0%, #240046 48%, #10002b 100%);
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Bunting / Bendera Pesta di Atas Layar */
+    .bunting-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      pointer-events: none;
+      z-index: 3;
+      padding: 0 4px;
+    }
+
+    .flag {
+      width: 0;
+      height: 0;
+      border-left: 16px solid transparent;
+      border-right: 16px solid transparent;
+      border-top: 26px solid var(--c, #ffbe0b);
+      filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.16));
+      transform-origin: top center;
+      animation: flagSwing 2.2s ease-in-out infinite alternate;
+    }
+
+    .flag:nth-child(even) {
+      animation-delay: 0.45s;
+    }
+
+    @keyframes flagSwing {
+      from { transform: rotate(-6deg); }
+      to { transform: rotate(6deg); }
+    }
+
+    .floating-layer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .balloon {
+      position: absolute;
+      bottom: -120px;
+      font-size: clamp(28px, 4.5vw, 46px);
+      opacity: 0.9;
+      animation: floatUp linear infinite;
+      filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.16));
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) translateX(0) rotate(-7deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.95;
+      }
+      50% {
+        transform: translateY(-55vh) translateX(20px) rotate(7deg);
+      }
+      90% {
+        opacity: 0.95;
+      }
+      100% {
+        transform: translateY(-115vh) translateX(-16px) rotate(-6deg);
+        opacity: 0;
+      }
+    }
+
+    .sparkle {
+      position: absolute;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 20px;
+      animation: twinkle 2.1s ease-in-out infinite;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { transform: scale(0.65) rotate(0deg); opacity: 0.3; }
+      50% { transform: scale(1.35) rotate(30deg); opacity: 1; }
+    }
+
+    .card {
+      position: relative;
+      z-index: 4;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(16px);
+      max-width: 530px;
+      width: 100%;
+      border-radius: 30px;
+      padding: 36px 26px 32px;
+      text-align: center;
+      box-shadow:
+        0 26px 65px rgba(55, 6, 65, 0.32),
+        0 0 0 3px rgba(255, 255, 255, 0.75);
+      animation: popIn 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+      transition: box-shadow 0.5s ease;
+    }
+
+    body.party-mode .card {
+      box-shadow:
+        0 0 45px rgba(255, 117, 143, 0.55),
+        0 0 90px rgba(199, 125, 255, 0.35),
+        0 0 0 3px rgba(255, 214, 10, 0.7);
+    }
+
+    @keyframes popIn {
+      from {
+        opacity: 0;
+        transform: scale(0.86) translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    .top-garland {
+      display: flex;
+      gap: 6px;
+      font-size: 19px;
+      user-select: none;
+    }
+
+    .top-garland span {
+      display: inline-block;
+      animation: sway 2s ease-in-out infinite;
+    }
+
+    .top-garland span:nth-child(even) {
+      animation-delay: 0.35s;
+    }
+
+    @keyframes sway {
+      0%, 100% { transform: rotate(-8deg); }
+      50% { transform: rotate(8deg); }
+    }
+
+    .top-controls {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .pill-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #fff0f6;
+      color: #c2255c;
+      border: 1.5px solid #fcc2d7;
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .pill-btn:hover {
+      background: #ffe3ec;
+      transform: translateY(-1px);
+    }
+
+    .pill-btn.active {
+      background: linear-gradient(135deg, #f06595, #ae3ec9);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 6px 14px rgba(174, 62, 201, 0.3);
+    }
+
+    .eq-bars {
+      display: inline-flex;
+      align-items: flex-end;
+      gap: 2px;
+      height: 11px;
+    }
+
+    .eq-bars span {
+      width: 3px;
+      height: 4px;
+      background: currentColor;
+      border-radius: 2px;
+    }
+
+    .pill-btn.active .eq-bars span:nth-child(1) {
+      animation: eqDance 0.5s ease-in-out infinite alternate;
+    }
+    .pill-btn.active .eq-bars span:nth-child(2) {
+      animation: eqDance 0.38s ease-in-out 0.14s infinite alternate;
+    }
+    .pill-btn.active .eq-bars span:nth-child(3) {
+      animation: eqDance 0.56s ease-in-out 0.24s infinite alternate;
+    }
+
+    @keyframes eqDance {
+      from { height: 3px; }
+      to { height: 11px; }
+    }
+
+    .cake-wrap {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+
+    .cake {
+      font-size: 76px;
+      display: inline-block;
+      animation: bounce 2s ease-in-out infinite;
+      filter: drop-shadow(0 12px 18px rgba(214, 51, 108, 0.25));
+      transition: transform 0.2s ease;
+    }
+
+    .cake-wrap:hover .cake {
+      transform: scale(1.06);
+    }
+
+    .candle-flame {
+      position: absolute;
+      top: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 22px;
+      animation: flicker 0.5s infinite alternate;
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+
+    .candle-flame.blown {
+      opacity: 0;
+      transform: translateX(-50%) scale(0.2);
+    }
+
+    @keyframes flicker {
+      from { transform: translateX(-50%) scale(0.92) rotate(-5deg); }
+      to { transform: translateX(-50%) scale(1.15) rotate(5deg); }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, #ffe3ec, #f3d9fa);
+      color: #c2255c;
+      font-weight: 700;
+      font-size: 0.84rem;
+      padding: 7px 16px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+      letter-spacing: 0.6px;
+      box-shadow: 0 4px 12px rgba(194, 37, 92, 0.14);
+    }
+
+    h1 {
+      font-family: "Fredoka", "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #d6336c, #9c36b5, #f59f00);
+      background-size: 200% auto;
+      animation: textShine 4s linear infinite;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: clamp(1.9rem, 5vw, 2.45rem);
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    @keyframes textShine {
+      to { background-position: 200% center; }
+    }
+
+    .name {
+      font-family: "Fredoka", "Segoe UI", sans-serif;
+      color: #5f3dc4;
+      font-weight: 600;
+      font-size: 1.38rem;
+      margin-bottom: 16px;
+    }
+
+    .message {
+      color: #495057;
+      line-height: 1.72;
+      font-size: 0.98rem;
+      margin-bottom: 20px;
+    }
+
+    /* Kotak 3 Harapan / Kejutan Interaktif */
+    .gift-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .gift-box {
+      background: linear-gradient(145deg, #fff5f8, #f8f0fc);
+      border: 1.5px solid #f3d9fa;
+      border-radius: 16px;
+      padding: 12px 8px;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .gift-box:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 18px rgba(174, 62, 201, 0.16);
+    }
+
+    .gift-box.opened {
+      background: linear-gradient(135deg, #f06595, #ae3ec9);
+      color: #fff;
+      border-color: transparent;
+    }
+
+    .gift-icon {
+      font-size: 26px;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .gift-label {
+      font-size: 0.76rem;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .gift-reveal {
+      margin-bottom: 18px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: #fff9db;
+      border: 1.5px dashed #fcc419;
+      color: #8f5b00;
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: none;
+    }
+
+    .gift-reveal.show {
+      display: block;
+      animation: fadeSlideUp 0.35s ease;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .btn {
+      border: none;
+      padding: 13px 20px;
+      border-radius: 999px;
+      font-family: inherit;
+      font-size: 0.94rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.05);
+    }
+
+    .btn:active {
+      transform: translateY(0) scale(0.98);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #f06595, #ae3ec9);
+      color: #fff;
+      box-shadow: 0 10px 22px rgba(174, 62, 201, 0.36);
+    }
+
+    .btn-secondary {
+      background: #fff0f6;
+      color: #c2255c;
+      border: 1.5px solid #fcc2d7;
+      box-shadow: 0 6px 14px rgba(240, 101, 149, 0.14);
+    }
+
+    .wish-box {
+      margin-top: 20px;
+      padding: 18px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #fff0f6 0%, #f8f0fc 100%);
+      border: 1.5px solid #f3d9fa;
+      color: #862e9c;
+      font-weight: 500;
+      line-height: 1.68;
+      display: none;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    }
+
+    .wish-box.show {
+      display: block;
+      animation: fadeSlideUp 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .wish-signature {
+      display: block;
+      margin-top: 12px;
+      font-weight: 700;
+      color: #c2255c;
+      font-style: italic;
+    }
+
+    @keyframes fadeSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    #fxCanvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .footer-note {
+      margin-top: 18px;
+      font-size: 0.8rem;
+      color: #868e96;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="fxCanvas"></canvas>
+
+  <!-- Bendera Pesta di Atas -->
+  <div class="bunting-bar" id="buntingBar" aria-hidden="true"></div>
+
+  <!-- Balon & Bintang -->
+  <div class="floating-layer" id="floatingLayer" aria-hidden="true"></div>
+
+  <main class="card">
+    <div class="top-bar">
+      <div class="top-garland" aria-hidden="true">
+        <span>🎉</span>
+        <span>🎈</span>
+        <span>✨</span>
+        <span>🎊</span>
+      </div>
+
+      <div class="top-controls">
+        <button type="button" class="pill-btn" id="partyModeBtn" onclick="togglePartyMode()">
+          ✨ Mode Malam Pesta
+        </button>
+        <button type="button" class="pill-btn" id="musicToggle" onclick="toggleMusic()">
+          <span class="eq-bars" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+          <span id="musicLabel">Putar Lagu 🎵</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="cake-wrap" onclick="blowCandleOnly()" title="Klik kue untuk tiup lilin!">
+      <span class="candle-flame" id="candleFlame" aria-hidden="true">🔥</span>
+      <div class="cake" aria-hidden="true">🎂</div>
+    </div>
+
+    <div class="badge">✨ LEVEL 29 UNLOCKED • CHAPTER 29 ✨</div>
+    <h1>Selamat Ulang Tahun!</h1>
+    <div class="name">Untuk Tari Tersayang ❤️</div>
+
+    <p class="message">
+      Selamat ulang tahun, sayang. Semoga di usia yang baru ini, semua hal baik
+      selalu berpihak ke kamu—kesehatan, kebahagiaan, dan segala impian yang sedang
+      kamu perjuangkan.
+    </p>
+
+    <!-- 3 Kotak Kado Kejutan -->
+    <div class="gift-grid">
+      <div class="gift-box" id="gift0" onclick="openGift(0)">
+        <span class="gift-icon">🎁</span>
+        <span class="gift-label">Kado #1<br />Doa Utama</span>
+      </div>
+      <div class="gift-box" id="gift1" onclick="openGift(1)">
+        <span class="gift-icon">💝</span>
+        <span class="gift-label">Kado #2<br />Janji Manis</span>
+      </div>
+      <div class="gift-box" id="gift2" onclick="openGift(2)">
+        <span class="gift-icon">🎟️</span>
+        <span class="gift-label">Kado #3<br />Hadiah Misterius</span>
+      </div>
+    </div>
+
+    <div class="gift-reveal" id="giftReveal"></div>
+
+    <div class="actions">
+      <button type="button" class="btn btn-primary" onclick="celebrateFullParty()">
+        Mulai Pesta, Musik &amp; Kembang Api 🎆
+      </button>
+      <button type="button" class="btn btn-secondary" onclick="launchFireworksAndConfetti()">
+        Tembak Kembang Api ✨
+      </button>
+    </div>
+
+    <div class="wish-box" id="secretWish">
+      Selamat ulang tahun! Makin bertambah umur, makin berkurang jatah ngambeknya, ya.
+      Semoga tahun ini makin sukses, makin sehat, dan makin sabar ngadepin aku.
+      Happy level up day, sayang
+      <span class="wish-signature">From Your Dearest Man, Dhika</span>
+    </div>
+
+    <div class="footer-note" id="candleStatus">
+      Tip: Buka 3 kotak kado di atas, klik kue untuk tiup lilin, atau nyalakan pesta kembang api!
+    </div>
+  </main>
+
+  <script>
+    // 1. Bendera Pesta (Bunting) di Atas Layar
+    const buntingBar = document.getElementById("buntingBar");
+    const flagColors = ["#ff477e", "#ffbe0b", "#3a86ff", "#06d6a0", "#9b5de5", "#ff758f"];
+    const flagCount = Math.max(12, Math.floor(window.innerWidth / 44));
+    for (let i = 0; i < flagCount; i++) {
+      const flag = document.createElement("div");
+      flag.className = "flag";
+      flag.style.setProperty("--c", flagColors[i % flagColors.length]);
+      buntingBar.appendChild(flag);
+    }
+
+    // 2. Balon & Bintang Berkelap-kelip
+    const floatingLayer = document.getElementById("floatingLayer");
+    const balloonEmojis = ["🎈", "🎉", "💖", "✨", "🥂", "🌸", "🎶", "🎊"];
+
+    for (let i = 0; i < 18; i++) {
+      const balloon = document.createElement("div");
+      balloon.className = "balloon";
+      balloon.textContent = balloonEmojis[i % balloonEmojis.length];
+      balloon.style.left = `${(i * 5.6) % 96}%`;
+      balloon.style.animationDuration = `${7.5 + (i % 5) * 2}s`;
+      balloon.style.animationDelay = `${(i % 6) * -1.7}s`;
+      floatingLayer.appendChild(balloon);
+    }
+
+    const sparkleCoords = [
+      [8, 15], [90, 16], [14, 76], [86, 75], [50, 9], [74, 40], [22, 46], [62, 85]
+    ];
+    sparkleCoords.forEach(([x, y], idx) => {
+      const sp = document.createElement("div");
+      sp.className = "sparkle";
+      sp.textContent = "✦";
+      sp.style.left = `${x}%`;
+      sp.style.top = `${y}%`;
+      sp.style.animationDelay = `${idx * 0.3}s`;
+      floatingLayer.appendChild(sp);
+    });
+
+    // 3. Interaksi 3 Kotak Kado
+    const GIFT_MESSAGES = [
+      "🌟 Doa #1: Semoga di usia 29 ini Tari selalu diberi kesehatan prima, hati yang tenang, dan rezeki yang mengalir deras!",
+      "💑 Janji #2: Aku janji bakal terus jadi partner terbaik yang selalu dukung dan temani setiap langkahmu ke depan.",
+      "🎁 Hadiah misterius : tunggu saat kita kencan selanjutnya"
+    ];
+
+    function openGift(index) {
+      const box = document.getElementById(`gift${index}`);
+      const reveal = document.getElementById("giftReveal");
+      box.classList.add("opened");
+      box.querySelector(".gift-icon").textContent = "🎊";
+      reveal.textContent = GIFT_MESSAGES[index];
+      reveal.classList.remove("show");
+      void reveal.offsetWidth;
+      reveal.classList.add("show");
+
+      playChime();
+      burstConfetti(70);
+    }
+
+    // 4. Mode Malam Pesta (Kontras Gelap Biar Kembang Api Makin Menyala)
+    let isPartyDark = false;
+    function togglePartyMode() {
+      isPartyDark = !isPartyDark;
+      document.body.classList.toggle("party-mode", isPartyDark);
+      const btn = document.getElementById("partyModeBtn");
+      btn.classList.toggle("active", isPartyDark);
+      btn.textContent = isPartyDark ? "☀️ Mode Cerah" : "✨ Mode Malam Pesta";
+      if (isPartyDark) {
+        launchFireworksAndConfetti();
+      }
+    }
+
+    // 5. Synthesizer Musik "Happy Birthday" Otomatis
+    let audioCtx = null;
+    let isPlaying = false;
+    let userManuallyStopped = false;
+    let melodyTimer = null;
+
+    function ensureAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === "suspended") {
+        return audioCtx.resume();
+      }
+      return Promise.resolve();
+    }
+
+    const NOTES = {
+      C4: 261.63, D4: 293.66, E4: 329.63, F4: 349.23,
+      G4: 392.00, A4: 440.00, Bb4: 466.16, C5: 523.25, E5: 659.25, G5: 783.99
+    };
+
+    const SONG = [
+      { note: NOTES.C4, chord: [NOTES.F4, NOTES.A4], dur: 0.36 },
+      { note: NOTES.C4, chord: null, dur: 0.22 },
+      { note: NOTES.D4, chord: [NOTES.F4, NOTES.A4], dur: 0.58 },
+      { note: NOTES.C4, chord: null, dur: 0.58 },
+      { note: NOTES.F4, chord: [NOTES.Bb4, NOTES.D4], dur: 0.58 },
+      { note: NOTES.E4, chord: [NOTES.C4, NOTES.G4], dur: 1.05 },
+
+      { note: NOTES.C4, chord: [NOTES.C4, NOTES.G4], dur: 0.36 },
+      { note: NOTES.C4, chord: null, dur: 0.22 },
+      { note: NOTES.D4, chord: [NOTES.C4, NOTES.G4], dur: 0.58 },
+      { note: NOTES.C4, chord: null, dur: 0.58 },
+      { note: NOTES.G4, chord: [NOTES.C4, NOTES.E4], dur: 0.58 },
+      { note: NOTES.F4, chord: [NOTES.F4, NOTES.A4], dur: 1.05 },
+
+      { note: NOTES.C4, chord: [NOTES.F4, NOTES.A4], dur: 0.36 },
+      { note: NOTES.C4, chord: null, dur: 0.22 },
+      { note: NOTES.C5, chord: [NOTES.F4, NOTES.A4], dur: 0.58 },
+      { note: NOTES.A4, chord: null, dur: 0.58 },
+      { note: NOTES.F4, chord: [NOTES.Bb4, NOTES.D4], dur: 0.58 },
+      { note: NOTES.E4, chord: null, dur: 0.58 },
+      { note: NOTES.D4, chord: [NOTES.Bb4, NOTES.D4], dur: 1.05 },
+
+      { note: NOTES.Bb4, chord: [NOTES.Bb4, NOTES.D4], dur: 0.36 },
+      { note: NOTES.Bb4, chord: null, dur: 0.22 },
+      { note: NOTES.A4, chord: [NOTES.F4, NOTES.A4], dur: 0.58 },
+      { note: NOTES.F4, chord: null, dur: 0.58 },
+      { note: NOTES.G4, chord: [NOTES.C4, NOTES.E4], dur: 0.58 },
+      { note: NOTES.F4, chord: [NOTES.F4, NOTES.A4], dur: 1.35 }
+    ];
+
+    function playTone(freq, startTime, duration, volume = 0.16, type = "triangle") {
+      if (!audioCtx) return;
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+
+      osc.type = type;
+      osc.frequency.setValueAtTime(freq, startTime);
+
+      gain.gain.setValueAtTime(0.0001, startTime);
+      gain.gain.exponentialRampToValueAtTime(volume, startTime + 0.025);
+      gain.gain.exponentialRampToValueAtTime(0.0001, startTime + duration + 0.25);
+
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+
+      osc.start(startTime);
+      osc.stop(startTime + duration + 0.3);
+    }
+
+    function playChime() {
+      ensureAudioContext().then(() => {
+        const now = audioCtx.currentTime;
+        playTone(NOTES.C5, now, 0.18, 0.14, "sine");
+        playTone(NOTES.E5, now + 0.09, 0.22, 0.14, "sine");
+        playTone(NOTES.G5, now + 0.18, 0.32, 0.16, "sine");
+      });
+    }
+
+    function scheduleSongLoop() {
+      if (!isPlaying) return;
+      ensureAudioContext().then(() => {
+        if (!isPlaying || audioCtx.state !== "running") return;
+
+        let t = audioCtx.currentTime + 0.05;
+        let totalDuration = 0;
+
+        SONG.forEach((step) => {
+          playTone(step.note * 2, t, step.dur, 0.15, "sine");
+          playTone(step.note, t, step.dur, 0.09, "triangle");
+
+          if (step.chord) {
+            step.chord.forEach((cFreq) => {
+              playTone(cFreq, t, step.dur * 1.4, 0.045, "sine");
+            });
+          }
+
+          t += step.dur;
+          totalDuration += step.dur;
+        });
+
+        clearTimeout(melodyTimer);
+        melodyTimer = setTimeout(() => {
+          if (isPlaying) scheduleSongLoop();
+        }, (totalDuration + 0.75) * 1000);
+      });
+    }
+
+    function updateMusicUI() {
+      const btn = document.getElementById("musicToggle");
+      const label = document.getElementById("musicLabel");
+      if (isPlaying) {
+        btn.classList.add("active");
+        label.textContent = "Musik Aktif 🎶";
+      } else {
+        btn.classList.remove("active");
+        label.textContent = "Putar Lagu 🎵";
+      }
+    }
+
+    function startMusic() {
+      ensureAudioContext().then(() => {
+        if (audioCtx.state === "running") {
+          if (!isPlaying) {
+            isPlaying = true;
+            updateMusicUI();
+            scheduleSongLoop();
+          }
+          removeAutoplayUnlockListeners();
+        } else {
+          // Browser menahan autoplay sebelum interaksi pertama; tampilkan status siap putar
+          updateMusicUI();
+        }
+      });
+    }
+
+    function stopMusic() {
+      isPlaying = false;
+      clearTimeout(melodyTimer);
+      updateMusicUI();
+    }
+
+    function toggleMusic() {
+      if (isPlaying) {
+        userManuallyStopped = true;
+        stopMusic();
+      } else {
+        userManuallyStopped = false;
+        startMusic();
+        burstConfetti(60);
+      }
+    }
+
+    // Fallback otomatis pada sentuhan/klik/scroll pertama jika browser memblokir autoplay awal
+    function unlockAutoplayOnFirstGesture() {
+      if (!userManuallyStopped && !isPlaying) {
+        startMusic();
+      } else {
+        removeAutoplayUnlockListeners();
+      }
+    }
+
+    function removeAutoplayUnlockListeners() {
+      ["pointerdown", "touchstart", "keydown", "scroll"].forEach((evt) => {
+        window.removeEventListener(evt, unlockAutoplayOnFirstGesture);
+      });
+    }
+
+    ["pointerdown", "touchstart", "keydown", "scroll"].forEach((evt) => {
+      window.addEventListener(evt, unlockAutoplayOnFirstGesture, { passive: true });
+    });
+
+    // 6. Canvas Gabungan: Konfeti + Kembang Api (Fireworks)
+    const canvas = document.getElementById("fxCanvas");
+    const ctx = canvas.getContext("2d");
+    let confettiParticles = [];
+    let fireworkSparks = [];
+    let animationId = null;
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+
+    const colors = ["#ff477e", "#ffbe0b", "#8338ec", "#3a86ff", "#06d6a0", "#ff758f", "#ffd166"];
+
+    function burstConfetti(count = 130) {
+      for (let i = 0; i < count; i++) {
+        const fromLeft = i % 2 === 0;
+        confettiParticles.push({
+          x: fromLeft ? Math.random() * canvas.width * 0.35 : canvas.width * 0.65 + Math.random() * canvas.width * 0.35,
+          y: canvas.height * 0.25 + (Math.random() - 0.5) * 80,
+          w: 7 + Math.random() * 8,
+          h: 5 + Math.random() * 6,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          vx: (Math.random() - 0.5) * 9 + (fromLeft ? 2.5 : -2.5),
+          vy: -4 - Math.random() * 6,
+          gravity: 0.16 + Math.random() * 0.08,
+          rotation: Math.random() * Math.PI * 2,
+          vRot: (Math.random() - 0.5) * 0.22,
+          opacity: 1
+        });
+      }
+      startFxLoop();
+    }
+
+    function spawnFirework(cx, cy) {
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      const count = 48;
+      for (let i = 0; i < count; i++) {
+        const angle = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.12;
+        const speed = 2.2 + Math.random() * 4.8;
+        fireworkSparks.push({
+          x: cx,
+          y: cy,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          color,
+          radius: 2.2 + Math.random() * 2,
+          alpha: 1,
+          decay: 0.015 + Math.random() * 0.01
+        });
+      }
+      startFxLoop();
+    }
+
+    function launchFireworksAndConfetti() {
+      burstConfetti(110);
+      const positions = [
+        [canvas.width * 0.22, canvas.height * 0.24],
+        [canvas.width * 0.78, canvas.height * 0.22],
+        [canvas.width * 0.5, canvas.height * 0.16],
+        [canvas.width * 0.3, canvas.height * 0.38],
+        [canvas.width * 0.7, canvas.height * 0.36]
+      ];
+      positions.forEach(([x, y], idx) => {
+        setTimeout(() => spawnFirework(x, y), idx * 240);
+      });
+    }
+
+    function startFxLoop() {
+      if (!animationId) {
+        animateFx();
+      }
+    }
+
+    function animateFx() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Render Konfeti
+      confettiParticles.forEach((p) => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += p.gravity;
+        p.vx *= 0.99;
+        p.rotation += p.vRot;
+        if (p.y > canvas.height - 60) {
+          p.opacity -= 0.025;
+        }
+
+        ctx.save();
+        ctx.globalAlpha = Math.max(0, p.opacity);
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rotation);
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+        ctx.restore();
+      });
+
+      // Render Kembang Api
+      fireworkSparks.forEach((s) => {
+        s.x += s.vx;
+        s.y += s.vy;
+        s.vy += 0.05;
+        s.vx *= 0.97;
+        s.vy *= 0.97;
+        s.alpha -= s.decay;
+
+        ctx.save();
+        ctx.globalAlpha = Math.max(0, s.alpha);
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
+        ctx.fillStyle = s.color;
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = s.color;
+        ctx.fill();
+        ctx.restore();
+      });
+
+      confettiParticles = confettiParticles.filter((p) => p.opacity > 0 && p.y < canvas.height + 40);
+      fireworkSparks = fireworkSparks.filter((s) => s.alpha > 0);
+
+      if (confettiParticles.length > 0 || fireworkSparks.length > 0) {
+        animationId = requestAnimationFrame(animateFx);
+      } else {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        animationId = null;
+      }
+    }
+
+    // 7. Aksi Tiup Lilin & Pesta Penuh
+    function blowCandleOnly() {
+      const flame = document.getElementById("candleFlame");
+      const status = document.getElementById("candleStatus");
+      flame.classList.add("blown");
+      status.textContent = "🎂 Lilin berhasil ditiup! Semoga semua doa Tari terkabul.";
+      playChime();
+      burstConfetti(100);
+    }
+
+    function celebrateFullParty() {
+      const box = document.getElementById("secretWish");
+      const flame = document.getElementById("candleFlame");
+      const status = document.getElementById("candleStatus");
+
+      box.classList.add("show");
+      flame.classList.add("blown");
+      status.textContent = "🎆 Pesta dimulai! Lagu diputar, lilin ditiup, dan kembang api menyala untuk Tari!";
+
+      if (!isPartyDark) {
+        isPartyDark = true;
+        document.body.classList.add("party-mode");
+        const modeBtn = document.getElementById("partyModeBtn");
+        modeBtn.classList.add("active");
+        modeBtn.textContent = "☀️ Mode Cerah";
+      }
+
+      userManuallyStopped = false;
+      startMusic();
+      launchFireworksAndConfetti();
+    }
+
+    // Putar lagu otomatis & sambutan kembang api saat halaman selesai dimuat
+    window.addEventListener("load", () => {
+      startMusic();
+      setTimeout(() => {
+        burstConfetti(80);
+        spawnFirework(canvas.width * 0.25, canvas.height * 0.25);
+        spawnFirework(canvas.width * 0.75, canvas.height * 0.25);
+      }, 350);
+    });
+  </script>
+</body>
+</html>
